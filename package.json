@@ -1,0 +1,131 @@
+{
+  "name": "laf-toolkit",
+  "displayName": "laf toolkit",
+  "description": "laf 云开发本地化开发插件，结合 Git 使用更佳！",
+  "version": "0.0.2",
+  "author": "NightWhite",
+  "publisher": "NightWhite",
+  "icon": "laf.png",
+  "repository": {},
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [],
+  "main": "./extension.ts",
+  "scripts": {
+    "build": "rm -rf ./dist/* && rollup -c build/rollup.config.js --environment NODE_ENV:production",
+    "package": "npm version patch && cp README.md laf.png package.json LICENSE.txt CHANGELOG.md ./dist && cd dist/ && vsce package",
+    "publish": "cd dist/ && vsce publish"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "laf-toolkit.login",
+        "title": "laf:登录"
+      },
+      {
+        "command": "laf-toolkit.init",
+        "title": "laf:初始化环境"
+      },
+      {
+        "command": "laf-toolkit.pushAll",
+        "title": "laf:发布全部云函数"
+      },
+      {
+        "command": "laf-toolkit.pullAll",
+        "title": "laf:下载全部云函数"
+      },
+      {
+        "command": "laf-toolkit.exec",
+        "title": "laf:直接运行本函数"
+      },
+      {
+        "command": "laf-toolkit.pull",
+        "title": "laf:下载本函数"
+      },
+      {
+        "command": "laf-toolkit.push",
+        "title": "laf:发布本函数"
+      },
+      {
+        "command": "laf-toolkit.depSync",
+        "title": "laf:同步线上依赖"
+      },
+      {
+        "command": "laf-toolkit.addFunc",
+        "title": "laf:新增云函数"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.exec",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.pull",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.push",
+          "group": "laf-cli"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.login",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.init",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.pushAll",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.pullAll",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.depSync",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.addFunc",
+          "group": "laf-cli"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "eslint": "^8.34.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
+    "@vscode/test-electron": "^2.2.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "babel-preset-env": "^1.7.0",
+    "rollup": "^1.28.0",
+    "rollup-plugin-terser": "^5.1.3"
+  }
+}
