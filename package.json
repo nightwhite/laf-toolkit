@@ -1,0 +1,134 @@
+{
+  "name": "laf-toolkit",
+  "displayName": "laf toolkit",
+  "description": "laf 云开发本地化开发插件，结合 Git 使用更佳！",
+  "version": "0.0.1",
+  "author": "NightWhite",
+  "publisher": "NightWhite",
+  "icon": "laf.png",
+  "repository": {},
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "laf-toolkit.login",
+        "title": "laf:登录"
+      },
+      {
+        "command": "laf-toolkit.init",
+        "title": "laf:初始化环境"
+      },
+      {
+        "command": "laf-toolkit.pushAll",
+        "title": "laf:发布全部云函数"
+      },
+      {
+        "command": "laf-toolkit.pullAll",
+        "title": "laf:下载全部云函数"
+      },
+      {
+        "command": "laf-toolkit.exec",
+        "title": "laf:直接运行本函数"
+      },
+      {
+        "command": "laf-toolkit.pull",
+        "title": "laf:下载本函数"
+      },
+      {
+        "command": "laf-toolkit.push",
+        "title": "laf:发布本函数"
+      },
+      {
+        "command": "laf-toolkit.depSync",
+        "title": "laf:同步线上依赖"
+      },
+      {
+        "command": "laf-toolkit.addFunc",
+        "title": "laf:新增云函数"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.exec",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.pull",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.push",
+          "group": "laf-cli"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.login",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.init",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.pushAll",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.pullAll",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.depSync",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.addFunc",
+          "group": "laf-cli"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
