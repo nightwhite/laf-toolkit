@@ -6,7 +6,7 @@
 			"script": "compile",
 			"problemMatcher": [],
 			"label": "npm",
-			"detail": "npm run compile --disable-extensions"
+			"detail": "npm run compile"
 		}
 	]
 }
