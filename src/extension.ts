@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as utils from "./utils/index";
 let outputChannel: any;
 
-async function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
   await utils.gitExtensionCheck();
   outputChannel = vscode.window.createOutputChannel("Laf-Toolkit");
   outputChannel.show(true);
@@ -17,14 +17,8 @@ async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(lafjsExec);
 }
 
-function deactivate() {
+export function deactivate() {
   if (outputChannel) {
     outputChannel.dispose();
   }
 }
-
-module.exports = {
-  activate,
-  deactivate,
-};
-

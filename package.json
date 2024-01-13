@@ -147,14 +147,14 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "lafjs",
+          "id": "laftoolkit",
           "title": "Laf Toolkit",
           "icon": "logo.svg"
         }
       ]
     },
     "views": {
-      "lafjs": [
+      "laftoolkit": [
         {
           "id": "laftoolkit.views.funcs",
           "name": "函数"
