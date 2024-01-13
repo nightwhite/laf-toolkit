@@ -8,6 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.setStatusBarMessage("");
   });
 
+
   context.subscriptions.push(lafjsExec);
 }
 // This method is called when your extension is deactivated

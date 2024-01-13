@@ -8,7 +8,32 @@
   "icon": "laf.png",
   "repository": {},
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.29.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Debuggers",
+    "Other"
+  ],
+  "keywords": [
+    "laf",
+    "lafjs",
+    "toolkit"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:css",
+    "onLanguage:html",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:json",
+    "onLanguage:jsonc",
+    "onLanguage:less",
+    "onLanguage:sass",
+    "onLanguage:scss",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
   },
   "categories": [
     "Programming Languages"
@@ -115,12 +140,112 @@
           "group": "laf-cli"
         }
       ]
+    },
+    "debuggers": [
+      {
+        "type": "cloudbase debugger",
+        "label": "CloudBase Node Debugger",
+        "languages": [
+          "javascript"
+        ],
+        "initialConfigurations": [
+          {
+            "type": "node",
+            "request": "attach",
+            "name": "CloudBase Node 云函数本地调试",
+            "entry": "${workspaceFolder}/index.js",
+            "cloudbase": true,
+            "port": 9229,
+            "params": {}
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "CloudBase Debugger: Node 本地调试",
+            "description": "CloudBase 本地函数调试 Debugger",
+            "body": {
+              "type": "node",
+              "name": "CloudBase Node 云函数本地调试",
+              "request": "attach",
+              "entry": "^\"\\${workspaceFolder}/${1:index.js}\"",
+              "cloudbase": true,
+              "port": 9229,
+              "params": {}
+            }
+          }
+        ],
+        "configurationAttributes": {
+          "attach": {
+            "properties": {
+              "cloudbase": {
+                "type": "boolean",
+                "description": "标志此配置为调试 CloudBase 云函数使用",
+                "default": true
+              },
+              "entry": {
+                "type": "string",
+                "description": "待调试函数的函数名或 index.js 文件的路径"
+              },
+              "params": {
+                "type": "object",
+                "description": "模拟调用云函数的参数"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "CloudBase",
+        "required": [
+          "command"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "lafjs",
+          "title": "Laf Toolkit",
+          "icon": "logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "lafjs": [
+        {
+          "id": "lafjs.views.funcs",
+          "name": "函数"
+        },
+        {
+          "id": "lafjs.views.database",
+          "name": "集合"
+        },
+        {
+          "id": "lafjs.views.storeage",
+          "name": "存储"
+        },
+        {
+          "id": "lafjs.views.logs",
+          "name": "日志"
+        },
+        {
+          "id": "lafjs.views.help",
+          "name": "帮助"
+        }
+      ]
     }
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "20.x",
-    "@types/vscode": "^1.85.0",
+    "@types/vscode": "^1.29.0",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "@vscode/test-cli": "^0.0.4",
