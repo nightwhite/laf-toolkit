@@ -30,7 +30,6 @@ const extensionConfig = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
         exclude:[
           /node_modules/,
           /laf-cloud/

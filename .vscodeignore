@@ -1,5 +1,4 @@
 .vscode/**
-.vscode-test/**
 out/**
 node_modules/**
 src/**
@@ -11,7 +10,6 @@ vsc-extension-quickstart.md
 **/.eslintrc.json
 **/*.map
 **/*.ts
-**/.vscode-test.*
 laf-cloud/**
 package-lock.json
 pnpm-lock.yaml
