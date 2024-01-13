@@ -67,11 +67,13 @@
       },
       {
         "command": "laf-toolkit.funcs.pull",
-        "title": "laf:下载本函数"
+        "title": "laf:下载本函数",
+        "icon": "$(tools)"
       },
       {
         "command": "laf-toolkit.funcs.push",
-        "title": "laf:发布本函数"
+        "title": "laf:发布本函数",
+        "icon": "$(tools)"
       },
       {
         "command": "laf-toolkit.funcs.depSync",
@@ -145,6 +147,18 @@
           "when": "resourceFilename == laf-cloud",
           "command": "laf-toolkit.funcs.addFunc",
           "group": "laf-cli"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "laf-toolkit.funcs.push",
+          "group": "navigation",
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
+        },
+        {
+          "command": "laf-toolkit.funcs.pull",
+          "group": "navigation",
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
         }
       ]
     },
