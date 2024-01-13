@@ -2,13 +2,14 @@
 
 'use strict';
 
-const path = require('path');
+import path from 'path';
+import webpack from 'webpack';
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
 /** @type WebpackConfig */
-const extensionConfig = {
+const extensionConfig: webpack.Configuration = {
   target: 'node', // VS Code extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/
 	mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
 
@@ -47,4 +48,4 @@ const extensionConfig = {
     level: "log", // enables logging required for problem matchers
   },
 };
-module.exports = [ extensionConfig ];
+export default extensionConfig;
