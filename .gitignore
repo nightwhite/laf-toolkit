@@ -1,9 +1,10 @@
 out
 dist
 node_modules
-.vscode-test/
 *.vsix
 laf-cloud/**
 .vscode/laf-exec.json
 .vscode/laf.json
-
+package-lock.json
+pnpm-lock.yaml
+**DS_Store**
