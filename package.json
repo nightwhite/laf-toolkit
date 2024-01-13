@@ -5,8 +5,11 @@
   "version": "0.0.1",
   "author": "NightWhite",
   "publisher": "NightWhite",
-  "icon": "laf.png",
-  "repository": {},
+  "icon": "logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nightwhite/laf-toolkit.git"
+  },
   "engines": {
     "vscode": "^1.29.0"
   },
@@ -43,39 +46,39 @@
   "contributes": {
     "commands": [
       {
-        "command": "laf-toolkit.login",
+        "command": "laf-toolkit.user.login",
         "title": "laf:登录"
       },
       {
-        "command": "laf-toolkit.init",
+        "command": "laf-toolkit.system.init",
         "title": "laf:初始化环境"
       },
       {
-        "command": "laf-toolkit.pushAll",
+        "command": "laf-toolkit.funcs.pushAll",
         "title": "laf:发布全部云函数"
       },
       {
-        "command": "laf-toolkit.pullAll",
+        "command": "laf-toolkit.funcs.pullAll",
         "title": "laf:下载全部云函数"
       },
       {
-        "command": "laf-toolkit.exec",
+        "command": "laf-toolkit.funcs.exec",
         "title": "laf:直接运行本函数"
       },
       {
-        "command": "laf-toolkit.pull",
+        "command": "laf-toolkit.funcs.pull",
         "title": "laf:下载本函数"
       },
       {
-        "command": "laf-toolkit.push",
+        "command": "laf-toolkit.funcs.push",
         "title": "laf:发布本函数"
       },
       {
-        "command": "laf-toolkit.depSync",
+        "command": "laf-toolkit.funcs.depSync",
         "title": "laf:同步线上依赖"
       },
       {
-        "command": "laf-toolkit.addFunc",
+        "command": "laf-toolkit.funcs.addFunc",
         "title": "laf:新增云函数"
       }
     ],
@@ -83,67 +86,68 @@
       "editor/context": [
         {
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.exec",
+          "command": "laf-toolkit.funcs.exec",
           "group": "laf-cli"
         },
         {
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.pull",
+          "command": "laf-toolkit.funcs.pull",
           "group": "laf-cli"
         },
         {
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.push",
+          "command": "laf-toolkit.funcs.push",
           "group": "laf-cli"
         }
       ],
       "explorer/context": [
         {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.login",
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.funcs.exec",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.funcs.pull",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
+          "command": "laf-toolkit.funcs.push",
           "group": "laf-cli"
         },
         {
           "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.init",
+          "command": "laf-toolkit.user.login",
           "group": "laf-cli"
         },
         {
           "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.pushAll",
+          "command": "laf-toolkit.system.init",
           "group": "laf-cli"
         },
         {
           "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.pullAll",
+          "command": "laf-toolkit.funcs.pushAll",
           "group": "laf-cli"
         },
         {
           "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.depSync",
+          "command": "laf-toolkit.funcs.pullAll",
           "group": "laf-cli"
         },
         {
           "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.addFunc",
+          "command": "laf-toolkit.funcs.depSync",
+          "group": "laf-cli"
+        },
+        {
+          "when": "resourceFilename == laf-cloud",
+          "command": "laf-toolkit.funcs.addFunc",
           "group": "laf-cli"
         }
       ]
     },
-   
-    "taskDefinitions": [
-      {
-        "type": "CloudBase",
-        "required": [
-          "command"
-        ],
-        "properties": {
-          "command": {
-            "type": "string"
-          }
-        }
-      }
-    ],
     "viewsContainers": {
       "activitybar": [
         {
@@ -178,10 +182,12 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "20.x",
     "@types/vscode": "^1.29.0",
+    "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
     "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
