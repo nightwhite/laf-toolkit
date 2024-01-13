@@ -10,11 +10,6 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": [
-    "Programming Languages",
-    "Debuggers",
-    "Other"
-  ],
   "keywords": [
     "laf",
     "lafjs",
@@ -37,7 +32,6 @@
   "categories": [
     "Programming Languages"
   ],
-  "activationEvents": [],
   "main": "./dist/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -136,60 +130,7 @@
         }
       ]
     },
-    "debuggers": [
-      {
-        "type": "cloudbase debugger",
-        "label": "CloudBase Node Debugger",
-        "languages": [
-          "javascript"
-        ],
-        "initialConfigurations": [
-          {
-            "type": "node",
-            "request": "attach",
-            "name": "CloudBase Node 云函数本地调试",
-            "entry": "${workspaceFolder}/index.js",
-            "cloudbase": true,
-            "port": 9229,
-            "params": {}
-          }
-        ],
-        "configurationSnippets": [
-          {
-            "label": "CloudBase Debugger: Node 本地调试",
-            "description": "CloudBase 本地函数调试 Debugger",
-            "body": {
-              "type": "node",
-              "name": "CloudBase Node 云函数本地调试",
-              "request": "attach",
-              "entry": "^\"\\${workspaceFolder}/${1:index.js}\"",
-              "cloudbase": true,
-              "port": 9229,
-              "params": {}
-            }
-          }
-        ],
-        "configurationAttributes": {
-          "attach": {
-            "properties": {
-              "cloudbase": {
-                "type": "boolean",
-                "description": "标志此配置为调试 CloudBase 云函数使用",
-                "default": true
-              },
-              "entry": {
-                "type": "string",
-                "description": "待调试函数的函数名或 index.js 文件的路径"
-              },
-              "params": {
-                "type": "object",
-                "description": "模拟调用云函数的参数"
-              }
-            }
-          }
-        }
-      }
-    ],
+   
     "taskDefinitions": [
       {
         "type": "CloudBase",
@@ -215,24 +156,20 @@
     "views": {
       "lafjs": [
         {
-          "id": "lafjs.views.funcs",
+          "id": "laftoolkit.views.funcs",
           "name": "函数"
         },
         {
-          "id": "lafjs.views.database",
+          "id": "laftoolkit.views.database",
           "name": "集合"
         },
         {
-          "id": "lafjs.views.storeage",
+          "id": "laftoolkit.views.storage",
           "name": "存储"
         },
         {
-          "id": "lafjs.views.logs",
+          "id": "laftoolkit.views.logs",
           "name": "日志"
-        },
-        {
-          "id": "lafjs.views.help",
-          "name": "帮助"
         }
       ]
     }

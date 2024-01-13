@@ -1,15 +1,30 @@
 import * as vscode from "vscode";
+import * as utils from "./utils/index";
+let outputChannel: any;
 
-export function activate(context: vscode.ExtensionContext) {
-  console.log("lafjs", "恭喜你，你的插件已激活！");
-
-  const lafjsExec = vscode.commands.registerCommand("laf-toolkit.exec", async () => {
-  
-    vscode.window.setStatusBarMessage("");
-  });
-
+async function activate(context: vscode.ExtensionContext) {
+  await utils.gitExtensionCheck();
+  outputChannel = vscode.window.createOutputChannel("Laf-Toolkit");
+  outputChannel.show(true);
+  utils.log(outputChannel, "laf-toolkit is now active", "Info");
+  const lafjsExec = vscode.commands.registerCommand(
+    "laf-toolkit.exec",
+    async () => {
+      vscode.window.setStatusBarMessage("");
+    }
+  );
 
   context.subscriptions.push(lafjsExec);
 }
-// This method is called when your extension is deactivated
-export function deactivate() {}
+
+function deactivate() {
+  if (outputChannel) {
+    outputChannel.dispose();
+  }
+}
+
+module.exports = {
+  activate,
+  deactivate,
+};
+
