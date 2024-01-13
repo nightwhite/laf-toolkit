@@ -6,4 +6,5 @@ node_modules
 laf-cloud/**
 .vscode/laf-exec.json
 .vscode/laf.json
-
+package-lock.json
+pnpm-lock.yaml

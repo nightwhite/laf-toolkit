@@ -13,3 +13,5 @@ vsc-extension-quickstart.md
 **/*.ts
 **/.vscode-test.*
 laf-cloud/**
+package-lock.json
+pnpm-lock.yaml
