@@ -2,8 +2,8 @@
 
 'use strict';
 
-import path from 'path';
-import webpack from 'webpack';
+import * as path from 'path';
+import * as webpack from 'webpack';
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/

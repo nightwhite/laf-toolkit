@@ -76,6 +76,11 @@
         "icon": "$(tools)"
       },
       {
+        "command": "laf-toolkit.funcs.exec",
+        "title": "laf:运行本函数",
+        "icon": "$(tools)"
+      },
+      {
         "command": "laf-toolkit.funcs.depSync",
         "title": "laf:同步线上依赖"
       },
@@ -159,6 +164,11 @@
           "command": "laf-toolkit.funcs.pull",
           "group": "navigation",
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
+        },
+        {
+          "command": "laf-toolkit.funcs.exec",
+          "group": "navigation",
+          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
         }
       ]
     },
@@ -205,5 +215,8 @@
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }
