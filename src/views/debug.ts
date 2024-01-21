@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
+import * as utils from "../utils/index";
 
-export function debugInit(context: vscode.ExtensionContext) {
+export function debugInit() {
   vscode.window.registerWebviewViewProvider(
     "laf-toolkit.views.terminal",
     {

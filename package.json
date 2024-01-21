@@ -22,8 +22,7 @@
     "onStartupFinished",
     "onLanguage:typescript",
     "workspaceContains:**/*.ts",
-    "onView:laf-toolkit",
-    "*"
+    "onView:laf-toolkit"
   ],
   "categories": [
     "Programming Languages"

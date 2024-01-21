@@ -6,12 +6,12 @@ import * as utils from "../utils/index";
 const nodes: any = {};
 
 export class FuncsView {
-  constructor(private context: vscode.ExtensionContext) {
+  constructor() {
     const view = vscode.window.createTreeView("laf-toolkit.views.funcs", {
       treeDataProvider: this.aNodeWithIdTreeDataProvider(),
       showCollapseAll: true,
     });
-    context.subscriptions.push(view);
+    utils.globalContext.subscriptions.push(view);
 
     view.onDidChangeSelection(
       (event: vscode.TreeViewSelectionChangeEvent<{ key: string }>) => {
@@ -86,10 +86,10 @@ export class FuncsView {
       treeItem.contextValue = "fileItem";
       treeItem.label = label;
       treeItem.iconPath = {
-        light: this.context.asAbsolutePath(
+        light: utils.globalContext.asAbsolutePath(
           path.join("resources", "light", "ts.svg")
         ),
-        dark: this.context.asAbsolutePath(
+        dark: utils.globalContext.asAbsolutePath(
           path.join("resources", "dark", "ts.svg")
         ),
       };

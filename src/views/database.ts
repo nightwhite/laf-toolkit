@@ -1,12 +1,13 @@
 import * as vscode from "vscode";
+import * as utils from "../utils/index";
 
 export class DatabaseView {
-  constructor(context: vscode.ExtensionContext) {
+  constructor() {
     const view = vscode.window.createTreeView("laf-toolkit.views.database", {
       treeDataProvider: myTreeDataProvider,
       showCollapseAll: false,
     });
-    context.subscriptions.push(view);
+    utils.globalContext.subscriptions.push(view);
   }
 }
 

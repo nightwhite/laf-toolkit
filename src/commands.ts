@@ -3,11 +3,12 @@ import * as utils from "./utils/index";
 import { FuncsView } from "./views/funcs";
 import * as fs from "fs";
 import * as path from "path";
+import { showLogin } from "./views/login";
 
 const login = vscode.commands.registerCommand(
   "laf-toolkit.user.login",
   async () => {
-    vscode.window.showInformationMessage("登录成功");
+    showLogin();
     utils.log("登录日志", "Info");
   }
 );
@@ -26,7 +27,7 @@ const refresh = vscode.commands.registerCommand(
   "laf-toolkit.views.funcs.refresh",
   async (event) => {
     utils.log("刷新", "Info");
-    new FuncsView(utils.globalContext);
+    new FuncsView();
   }
 );
 
@@ -53,7 +54,7 @@ const del = vscode.commands.registerCommand(
       // 删除 yaml 文件
       fs.unlinkSync(path.join(rootPath, event.key.replace(/.ts$/, ".yaml")));
       // 刷新视图
-      new FuncsView(utils.globalContext);
+      new FuncsView();
     }
   }
 );
