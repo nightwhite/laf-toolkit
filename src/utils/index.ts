@@ -6,23 +6,19 @@ import * as vscode from "vscode";
  * @param logData 日志数据
  * @param logLevel 日志级别
  */
-const log = (outputChannel: any, logData: string, logLevel: string) => {
+const log = (logData: string, logLevel: string) => {
+  let outputChannel = getOutputChannel();
   const date = new Date().toLocaleString();
   outputChannel.appendLine(`${date} [${logLevel}] ${logData}`);
 };
 
-const gitExtensionCheck = async () => {
-  try {
-    const vs_git = vscode.extensions.getExtension("vscode.git");
-    console.log(vs_git);
-    if (void 0 !== vs_git) {
-      return (
-        vs_git.isActive ? vs_git.exports : await vs_git.activate()
-      ).getAPI(1);
-    }
-  } catch (e) {
-    console.log("vscode.git not installed!!");
+let _channel: vscode.OutputChannel;
+function getOutputChannel(): vscode.OutputChannel {
+  if (!_channel) {
+    _channel = vscode.window.createOutputChannel("laf-toolkit");
+    _channel.show();
   }
-};
+  return _channel;
+}
 
-export { log, gitExtensionCheck };
+export { log };

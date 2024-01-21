@@ -11,7 +11,7 @@
     "url": "https://github.com/nightwhite/laf-toolkit.git"
   },
   "engines": {
-    "vscode": "^1.29.0"
+    "vscode": "^1.73.0"
   },
   "keywords": [
     "laf",
@@ -20,73 +20,77 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onLanguage:css",
-    "onLanguage:html",
-    "onLanguage:javascript",
-    "onLanguage:javascriptreact",
-    "onLanguage:json",
-    "onLanguage:jsonc",
-    "onLanguage:less",
-    "onLanguage:sass",
-    "onLanguage:scss",
     "onLanguage:typescript",
-    "onLanguage:typescriptreact"
+    "workspaceContains:**/*.ts",
+    "onView:laf-toolkit"
   ],
   "categories": [
     "Programming Languages"
   ],
   "main": "./dist/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "lint": "eslint src --ext ts"
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "test-compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\""
   },
   "contributes": {
     "commands": [
       {
         "command": "laf-toolkit.user.login",
-        "title": "laf:登录"
+        "title": "laf1:登录"
       },
       {
         "command": "laf-toolkit.system.init",
-        "title": "laf:初始化环境"
+        "title": "laf1:初始化环境"
       },
       {
         "command": "laf-toolkit.funcs.pushAll",
-        "title": "laf:发布全部云函数"
+        "title": "laf1:发布全部云函数"
       },
       {
         "command": "laf-toolkit.funcs.pullAll",
-        "title": "laf:下载全部云函数"
+        "title": "laf1:下载全部云函数"
       },
       {
         "command": "laf-toolkit.funcs.exec",
-        "title": "laf:直接运行本函数"
+        "title": "laf1:直接运行本函数"
       },
       {
         "command": "laf-toolkit.funcs.pull",
-        "title": "laf:下载本函数",
+        "title": "laf1:下载本函数",
         "icon": "$(tools)"
       },
       {
         "command": "laf-toolkit.funcs.push",
-        "title": "laf:发布本函数",
+        "title": "laf1:发布本函数",
         "icon": "$(tools)"
       },
       {
         "command": "laf-toolkit.funcs.exec",
-        "title": "laf:运行本函数",
+        "title": "laf1:运行本函数",
         "icon": "$(tools)"
       },
       {
         "command": "laf-toolkit.funcs.depSync",
-        "title": "laf:同步线上依赖"
+        "title": "laf1:同步线上依赖"
       },
       {
         "command": "laf-toolkit.funcs.addFunc",
-        "title": "laf:新增云函数"
+        "title": "laf1:新增云函数"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.right-click.push",
+        "title": "发布云函数"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.right-click.changeName",
+        "title": "修改云函数名"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.right-click.pull",
+        "title": "拉取最新云函数"
       }
     ],
     "menus": {
@@ -170,53 +174,75 @@
           "group": "navigation",
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
         }
+      ],
+      "view/title": [
+        {
+          "command": "laf-toolkit.funcs.exec",
+          "when": "view == laf-toolkit.views.funcs",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "laf-toolkit.views.funcs.right-click.push",
+          "when": "viewItem == fileItem"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.right-click.changeName",
+          "when": "viewItem == fileItem"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.right-click.pull",
+          "when": "viewItem == fileItem"
+        }
       ]
     },
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "laftoolkit",
-          "title": "Laf Toolkit",
+          "id": "laf-toolkit",
+          "title": "Laf 云开发插件",
           "icon": "logo.svg"
         }
       ]
     },
     "views": {
-      "laftoolkit": [
+      "laf-toolkit": [
         {
-          "id": "laftoolkit.views.funcs",
+          "id": "laf-toolkit.views.funcs",
           "name": "函数"
         },
         {
-          "id": "laftoolkit.views.database",
+          "id": "laf-toolkit.views.database",
           "name": "集合"
         },
         {
-          "id": "laftoolkit.views.storage",
+          "id": "laf-toolkit.views.storage",
           "name": "存储"
         },
         {
-          "id": "laftoolkit.views.logs",
+          "id": "laf-toolkit.views.logs",
           "name": "日志"
         }
       ]
-    }
+    },
+    "viewsWelcome": [
+      {
+        "view": "laf-toolkit.views.database",
+        "contents": "尚未登录到 Laf API Server，请登录后再查看.\n[登录](command:laf-toolkit.user.login)",
+        "enablement": "laf-toolkit.app.init"
+      }
+    ]
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "20.x",
-    "@types/vscode": "^1.29.0",
-    "@types/webpack": "^5.28.5",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "eslint": "^8.56.0",
-    "ts-loader": "^9.5.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
-  },
-  "dependencies": {
-    "node-fetch": "^3.3.2"
+    "@types/node": "^16.18.34",
+    "@types/vscode": "^1.73.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.26.0",
+    "ts-loader": "^7.0.5",
+    "typescript": "^5.3.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
