@@ -47,12 +47,14 @@
         "title": "laf1:初始化环境"
       },
       {
-        "command": "laf-toolkit.funcs.pushAll",
-        "title": "laf1:发布全部云函数"
+        "command": "laf-toolkit.views.funcs.pullAll",
+        "title": "拉取全部云函数",
+        "icon": "$(cloud-download)"
       },
       {
-        "command": "laf-toolkit.funcs.pullAll",
-        "title": "laf1:下载全部云函数"
+        "command": "laf-toolkit.views.funcs.pushAll",
+        "title": "发布全部云函数",
+        "icon": "$(cloud-upload)"
       },
       {
         "command": "laf-toolkit.funcs.exec",
@@ -71,10 +73,6 @@
       {
         "command": "laf-toolkit.funcs.depSync",
         "title": "laf1:同步线上依赖"
-      },
-      {
-        "command": "laf-toolkit.funcs.addFunc",
-        "title": "laf1:新增云函数"
       },
       {
         "command": "laf-toolkit.views.funcs.right-click.push",
@@ -96,6 +94,21 @@
       {
         "command": "laf-toolkit.views.funcs.right-click.del",
         "title": "删除云函数"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.add",
+        "title": "新增云函数",
+        "icon": "$(add)"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.help",
+        "title": "查看帮助",
+        "icon": "$(book)"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.syncDep",
+        "title": "同步线上依赖",
+        "icon": "$(globe)"
       }
     ],
     "menus": {
@@ -114,6 +127,31 @@
       "view/title": [
         {
           "command": "laf-toolkit.views.funcs.refresh",
+          "when": "view == laf-toolkit.views.funcs",
+          "group": "navigation"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.pullAll",
+          "when": "view == laf-toolkit.views.funcs",
+          "group": "navigation"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.pushAll",
+          "when": "view == laf-toolkit.views.funcs",
+          "group": "navigation"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.add",
+          "when": "view == laf-toolkit.views.funcs",
+          "group": "navigation"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.help",
+          "when": "view == laf-toolkit.views.funcs",
+          "group": "navigation"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.syncDep",
           "when": "view == laf-toolkit.views.funcs",
           "group": "navigation"
         }
@@ -141,7 +179,7 @@
       "activitybar": [
         {
           "id": "laf-toolkit",
-          "title": "Laf 云开发插件",
+          "title": "Laf 云开发",
           "icon": "logo.svg"
         }
       ]
@@ -154,6 +192,10 @@
           "visibility": "visible"
         },
         {
+          "id": "laf-toolkit.views.debug",
+          "name": "调试"
+        },
+        {
           "id": "laf-toolkit.views.database",
           "name": "数据库",
           "visibility": "visible"
@@ -164,8 +206,9 @@
           "visibility": "collapsed"
         },
         {
-          "id": "laf-toolkit.views.debug",
-          "name": "调试"
+          "id": "laf-toolkit.views.logs",
+          "name": "日志",
+          "visibility": "collapsed"
         }
       ]
     },
