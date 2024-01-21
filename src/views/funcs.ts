@@ -19,15 +19,6 @@ export class FuncsView {
         openFile(event.selection[0].key);
       }
     );
-
-    // 右键第一个按钮
-    vscode.commands.registerCommand(
-      "laf-toolkit.views.funcs.right-click.push",
-      async (event) => {
-        console.log(event);
-        utils.log("右键第一个按钮", "Info");
-      }
-    );
   }
 
   private aNodeWithIdTreeDataProvider(): vscode.TreeDataProvider<{
@@ -38,12 +29,10 @@ export class FuncsView {
         const res = this.getChildren(element ? element.key : undefined).map(
           (key) => this.getNode(key)
         );
-        console.log(3123123, res);
         return res;
       },
       getTreeItem: (element: { key: string }): vscode.TreeItem => {
         const treeItem = this.getTreeItem(element.key);
-        console.log(3123123111, treeItem);
         treeItem.id = element.key;
         return treeItem;
       },
@@ -157,7 +146,6 @@ const openFile = (fileName: string) => {
     ? vscode.workspace.workspaceFolders[0].uri.fsPath
     : "";
   const filePath = path.join(rootPath, "laf-cloud/functions", fileName);
-  console.log(3123123, filePath);
   vscode.workspace.openTextDocument(filePath).then((document) => {
     vscode.window.showTextDocument(document);
   });
