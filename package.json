@@ -182,6 +182,13 @@
           "title": "Laf 云开发",
           "icon": "logo.svg"
         }
+      ],
+      "panel": [
+        {
+          "icon": "laf.svg",
+          "id": "laf-toolkit-terminal",
+          "title": "laf-toolkit Terminal"
+        }
       ]
     },
     "views": {
@@ -209,6 +216,13 @@
           "id": "laf-toolkit.views.logs",
           "name": "日志",
           "visibility": "collapsed"
+        }
+      ],
+      "laf-toolkit-terminal": [
+        {
+          "id": "laf-toolkit.views.terminal",
+          "name": "Laf-Toolkit Terminal",
+          "type": "webview"
         }
       ]
     },
