@@ -22,7 +22,8 @@
     "onStartupFinished",
     "onLanguage:typescript",
     "workspaceContains:**/*.ts",
-    "onView:laf-toolkit"
+    "onView:laf-toolkit",
+    "*"
   ],
   "categories": [
     "Programming Languages"
@@ -68,11 +69,6 @@
         "icon": "$(tools)"
       },
       {
-        "command": "laf-toolkit.funcs.exec",
-        "title": "laf1:运行本函数",
-        "icon": "$(tools)"
-      },
-      {
         "command": "laf-toolkit.funcs.depSync",
         "title": "laf1:同步线上依赖"
       },
@@ -91,17 +87,21 @@
       {
         "command": "laf-toolkit.views.funcs.right-click.pull",
         "title": "拉取最新云函数"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.refresh",
+        "title": "刷新",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "laf-toolkit.views.funcs.right-click.del",
+        "title": "删除云函数"
       }
     ],
     "menus": {
       "editor/context": [
         {
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.funcs.exec",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
           "command": "laf-toolkit.funcs.pull",
           "group": "laf-cli"
         },
@@ -109,75 +109,11 @@
           "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
           "command": "laf-toolkit.funcs.push",
           "group": "laf-cli"
-        }
-      ],
-      "explorer/context": [
-        {
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.funcs.exec",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.funcs.pull",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i",
-          "command": "laf-toolkit.funcs.push",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.user.login",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.system.init",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.funcs.pushAll",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.funcs.pullAll",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.funcs.depSync",
-          "group": "laf-cli"
-        },
-        {
-          "when": "resourceFilename == laf-cloud",
-          "command": "laf-toolkit.funcs.addFunc",
-          "group": "laf-cli"
-        }
-      ],
-      "editor/title": [
-        {
-          "command": "laf-toolkit.funcs.push",
-          "group": "navigation",
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
-        },
-        {
-          "command": "laf-toolkit.funcs.pull",
-          "group": "navigation",
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
-        },
-        {
-          "command": "laf-toolkit.funcs.exec",
-          "group": "navigation",
-          "when": "resourcePath =~ /[\\/\\\\]laf-cloud[\\/\\\\]functions(?:[\\/\\\\][^\\/\\\\]+)*[\\/\\\\][^\\/\\\\]+\\.ts$/i"
         }
       ],
       "view/title": [
         {
-          "command": "laf-toolkit.funcs.exec",
+          "command": "laf-toolkit.views.funcs.refresh",
           "when": "view == laf-toolkit.views.funcs",
           "group": "navigation"
         }
@@ -193,6 +129,10 @@
         },
         {
           "command": "laf-toolkit.views.funcs.right-click.pull",
+          "when": "viewItem == fileItem"
+        },
+        {
+          "command": "laf-toolkit.views.funcs.right-click.del",
           "when": "viewItem == fileItem"
         }
       ]
@@ -210,19 +150,22 @@
       "laf-toolkit": [
         {
           "id": "laf-toolkit.views.funcs",
-          "name": "函数"
+          "name": "云函数",
+          "visibility": "visible"
         },
         {
           "id": "laf-toolkit.views.database",
-          "name": "集合"
+          "name": "数据库",
+          "visibility": "visible"
         },
         {
           "id": "laf-toolkit.views.storage",
-          "name": "存储"
+          "name": "云存储",
+          "visibility": "collapsed"
         },
         {
-          "id": "laf-toolkit.views.logs",
-          "name": "日志"
+          "id": "laf-toolkit.views.debug",
+          "name": "调试"
         }
       ]
     },

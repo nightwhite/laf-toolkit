@@ -12,6 +12,14 @@ const log = (logData: string, logLevel: string) => {
   outputChannel.appendLine(`${date} [${logLevel}] ${logData}`);
 };
 
+/**
+ * 全局上下文
+ */
+let globalContext: vscode.ExtensionContext;
+const setGlobalContext = (context: vscode.ExtensionContext) => {
+  globalContext = context;
+};
+
 let _channel: vscode.OutputChannel;
 function getOutputChannel(): vscode.OutputChannel {
   if (!_channel) {
@@ -21,4 +29,4 @@ function getOutputChannel(): vscode.OutputChannel {
   return _channel;
 }
 
-export { log };
+export { log, globalContext, setGlobalContext };
