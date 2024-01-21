@@ -22,8 +22,7 @@
     "onStartupFinished",
     "onLanguage:typescript",
     "workspaceContains:**/*.ts",
-    "onView:laf-toolkit",
-    "*"
+    "onView:laf-toolkit"
   ],
   "categories": [
     "Programming Languages"
@@ -37,6 +36,17 @@
     "lint": "eslint \"src/**/*.ts\""
   },
   "contributes": {
+    "customEditors": [
+      {
+        "viewType": "myCustomEditor",
+        "displayName": "My Custom Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.myext"
+          }
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "laf-toolkit.user.login",

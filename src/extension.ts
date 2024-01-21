@@ -12,15 +12,13 @@ export async function activate(context: vscode.ExtensionContext) {
   for (const command of commands) {
     context.subscriptions.push(command);
   }
-  new FuncsView(context);
-  new DatabaseView(context);
-  debugInit(context);
+  new FuncsView();
+  new DatabaseView();
+  debugInit();
 }
-
 
 export function deactivate() {
   if (outputChannel) {
     outputChannel.dispose();
   }
 }
-
