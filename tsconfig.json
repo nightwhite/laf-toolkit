@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2020",
-    "lib": ["es2020", "dom"],
-    "sourceMap": true,
-    "rootDir": "src",
-    "strict": true
-  },
-  "exclude": [
-    "laf-cloud/**",
-    "webpack.config.ts"
-  ]
+		"module": "commonjs",
+		"target": "es2020",
+		"lib": ["es2020"],
+		"outDir": "out",
+		"sourceMap": true,
+		"rootDir": "src",
+		"strict": true,
+	},
+  "include": [
+		"src/**/*.ts",
+		"./node_modules/vscode/vscode.d.ts",
+		"./node_modules/vscode/lib/*",
+	]
 }
