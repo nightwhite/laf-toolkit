@@ -36,17 +36,6 @@
     "lint": "eslint \"src/**/*.ts\""
   },
   "contributes": {
-    "customEditors": [
-      {
-        "viewType": "myCustomEditor",
-        "displayName": "My Custom Editor",
-        "selector": [
-          {
-            "filenamePattern": "*.myext"
-          }
-        ]
-      }
-    ],
     "commands": [
       {
         "command": "laf-toolkit.user.login",
